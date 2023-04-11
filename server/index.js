@@ -1,14 +1,16 @@
+if(process.env.NODE_ENV!=='production'){
+  require("dotenv").config({
+    path: "/home/Ayyan/Desktop/Project-Emaily/.env",
+  });
+}
 const express = require("express");
-const dotenv = require("dotenv").config({
-  path: "/home/Ayyan/Desktop/Project-Emaily/.env",
-});
 const mongoose = require("mongoose");
 const session=require("express-session")
 const passport=require("passport")
 require("./models/user");
 require("./services/passport");
-
-mongoose.connect("mongodb://localhost:27017/Emaily").then(() => {
+const dbUrl=process.env.MONGO_DB_URI||"mongodb://localhost:27017/Emaily"
+mongoose.connect(dbUrl).then(() => {
   console.log("Database Connected");
 });
 const app = express();
