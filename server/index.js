@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const mongoStore = require("connect-mongo");
 require("./models/user");
 require("./services/passport");
 const dbUrl = process.env.MONGO_DB_URI || "mongodb://localhost:27017/Emaily";
@@ -21,6 +22,10 @@ app.use(
     maxAge: 30 * 24 * 60 * 60 * 1000,
     secret: process.env.SECRET,
     saveUninitialized: true,
+    store: mongoStore.create({
+      mongoUrl: process.env.MONGO_DB_URI || "mongodb://localhost:27017/Emaily",
+      ttl: 14 * 24 * 60 * 60, // = 14 days. Default
+    }),
   })
 );
 app.use(passport.initialize());
