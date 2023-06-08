@@ -8,6 +8,7 @@ router.get("/current_user",(req,res)=>{
   router.get('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
+      req.session.destroy()
       res.redirect('/');
     });
   });

@@ -7,6 +7,11 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 import thunk from "redux-thunk"
 import App from "./components/App";
 import reducers from "./reducers";
+
+import axios from "axios";
+
+window.axios=axios
+
 const element = document.getElementById("root");
 const root = ReactDOM.createRoot(element);
 

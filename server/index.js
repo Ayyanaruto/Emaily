@@ -10,6 +10,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const mongoStore = require("connect-mongo");
 require("./models/user");
+require("./models/survey");
 require("./services/passport");
 const dbUrl = process.env.MONGO_DB_URI || "mongodb://localhost:27017/Emaily";
 mongoose.connect(dbUrl).then(() => {
@@ -26,6 +27,7 @@ app.use(
       mongoUrl: process.env.MONGO_DB_URI || "mongodb://localhost:27017/Emaily",
       ttl: 14 * 24 * 60 * 60, // = 14 days. Default
     }),
+    saveUninitialized:false
   })
 );
 app.use(passport.initialize());
@@ -33,9 +35,10 @@ app.use(passport.session());
 const auth = require("./routes/authRoutes");
 const userApi = require("./routes/userApi");
 const billing = require("./routes/billingRoutes");
+const survey=require("./routes/surveyRoutes")
 
 app.use("/auth/google", auth);
-app.use("/api", userApi, billing);
+app.use("/api", userApi, billing,survey);
 
 if (process.env.NODE_ENV === "production") {
   //Express will serve up production assets
