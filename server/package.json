@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"nodemon index.js\" \"npm run client\"",
+    "dev": "concurrently \"node index.js\" \"npm run client\"",
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --legacy-peer-deps --prefix client && npm run build --prefix client"
   },
   "author": "",
