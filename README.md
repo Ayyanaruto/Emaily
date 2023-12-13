@@ -113,7 +113,7 @@ I hope this helps! Let me know if you have any other questions.
 * This is a basic installation guide. You may need to adjust the steps based on your specific environment.
 * Feel free to contribute to the project by creating pull requests on GitHub.
 
-We hope this helps you get started with BookChat!
+We hope this helps you get started with Emaily!
 
 
 
